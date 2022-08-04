@@ -52,11 +52,16 @@ export const Form = () => {
             console.log(error)
         }
     }
+
+    const handleChange = async (e) => {
+        console.log("Genre selected");
+        await setGenres(() => ({ name: e.target.value }));
+      }
     
     return (
         <form onSubmit={handleSubmit}>
             
-            <select id="genres" onChange={(e) => setGenres(e.target.value)}>
+            <select id="genres" onChange={handleChange}>
                 {genres?.map(genre => (
                     <option value={genre.name} key={genre.id} >{genre.name}</option>
                 ))}
