@@ -1,47 +1,48 @@
 import { useEffect, useState } from 'react'
 import heart from '../images/heart.svg'
 import start from '../images/Star.svg'
-import { getTrendingMovies, imageURL } from '../services/getTrendingMovies'
+import { imageURL } from '../services/getTrendingMovies'
+import { getTrendingSeries } from '../services/getTrendingSeries'
 import '../styles/Cards.css'
 
-export const Movies = (props) => {
+export const Series = (props) => {
 
-    const [movies, setMovies] = useState([])
-    console.log(movies)
+    const [series, setSeries] = useState([])
+    console.log(series)
 
     useEffect(() => {
 
-        async function loadTrendingMovies() {
+        async function loadTrendingSeries() {
 
             try {
-                const trendingMovies = await getTrendingMovies()
-                setMovies(() => trendingMovies)
+                const trendingSeries = await getTrendingSeries()
+                setSeries(() => trendingSeries)
             } catch (error) {
                 console.log(error)
             }
         }
 
-        loadTrendingMovies()
+        loadTrendingSeries()
     }, [])
 
     return (
         <>
-            {movies.map(movie => (
+            {series.map(serie => (
 
-                <section className="card" key={movie.id}>
-                    <img src={imageURL + movie.backdrop_path} alt="" />
+                <section className="card" key={serie.id}>
+                    <img src={imageURL + serie.backdrop_path} alt="" />
                     <div className="movie-name">
                         <h4>
-                            {movie.title}
+                            {serie.name}
                         </h4>
                         <img src={start} alt="Estrela" />
-                        <span>{(movie.vote_average).toFixed(1)}</span>
+                        <span>{(serie.vote_average).toFixed(1)}</span>
                         <img src={heart} alt="Coração" />
                         <span>Favoritar</span>
                     </div>
                     
                     <div className="sinopse">
-                        <p>{movie.overview}</p>
+                        <p>{serie.overview}</p>
                     </div>
                 </section>
                 

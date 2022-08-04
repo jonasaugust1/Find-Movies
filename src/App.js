@@ -1,14 +1,17 @@
-import {Form} from './components/Form'
-import { Movies } from './components/Movies';
+import {BrowserRouter, Link} from 'react-router-dom'
+import { AppRoutes } from './Routes';
 import './styles/global.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Form />
-        <Movies />
-      </header>
+    <div className="App-header">
+      <BrowserRouter>
+        <nav>
+          <Link to='/'>Filmes</Link>
+          <Link to='/series'>Series</Link>
+        </nav>
+        <AppRoutes />
+      </BrowserRouter>
     </div>
   );
 }
